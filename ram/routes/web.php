@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ModelController;
+use App\Http\Controllers\BladeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,31 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('models/all', [ModelController::class, 'ejemplo']);
+
+Route::get('blade/directivas', [BladeController::class, 'directivas']);
+
+
+// ---------------
+// ----- RAM -----
+// ---------------
+
+Route::get('backoffice/movies', [MovieController::class, 'index']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Auth::routes();
 
