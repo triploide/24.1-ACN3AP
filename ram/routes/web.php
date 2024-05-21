@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BladeController;
+use App\Http\Controllers\Example\RequestController;
+use App\Http\Controllers\Example\MovieController as ExampleMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,30 @@ Route::get('/', function () {
 Route::get('models/all', [ModelController::class, 'ejemplo']);
 
 Route::get('blade/directivas', [BladeController::class, 'directivas']);
+
+// -------------------
+// ----- EXAMPLE -----
+// -------------------
+Route::get('example/request/form', [RequestController::class, 'form']);
+Route::post('example/request/all', [RequestController::class, 'all']);
+Route::post('example/request/input', [RequestController::class, 'input']);
+Route::post('example/request/only', [RequestController::class, 'only']);
+Route::post('example/request/except', [RequestController::class, 'except']);
+
+// listado
+Route::get('example/movies', [ExampleMovieController::class, 'index']);
+
+// form de creación
+Route::get('example/movies/create', [ExampleMovieController::class, 'create']);
+
+// método que crea
+Route::post('example/movies', [ExampleMovieController::class, 'store']);
+
+// form de edición
+Route::get('example/movies/{id}/edit', [ExampleMovieController::class, 'edit']);
+
+// método que edita
+Route::post('example/movies/{id}', [ExampleMovieController::class, 'update']);
 
 
 // ---------------
