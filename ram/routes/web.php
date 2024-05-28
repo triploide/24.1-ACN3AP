@@ -56,7 +56,7 @@ Route::post('example/movies/{id}', [ExampleMovieController::class, 'update']);
 // ---------------
 
 Route::get('backoffice/movies', [MovieController::class, 'index']);
-
+Route::get('backoffice/movies/create', [MovieController::class, 'create']);
 
 
 
