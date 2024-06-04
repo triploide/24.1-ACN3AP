@@ -5,6 +5,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BladeController;
 use App\Http\Controllers\Example\RequestController;
+use App\Http\Controllers\Example\QueryController;
 use App\Http\Controllers\Example\MovieController as ExampleMovieController;
 
 /*
@@ -29,12 +30,15 @@ Route::get('blade/directivas', [BladeController::class, 'directivas']);
 // -------------------
 // ----- EXAMPLE -----
 // -------------------
+
+// ----- Request ------
 Route::get('example/request/form', [RequestController::class, 'form']);
 Route::post('example/request/all', [RequestController::class, 'all']);
 Route::post('example/request/input', [RequestController::class, 'input']);
 Route::post('example/request/only', [RequestController::class, 'only']);
 Route::post('example/request/except', [RequestController::class, 'except']);
 
+// ----- Persistencia de datos ------
 // listado
 Route::get('example/movies', [ExampleMovieController::class, 'index']);
 
@@ -50,11 +54,21 @@ Route::get('example/movies/{id}/edit', [ExampleMovieController::class, 'edit']);
 // método que edita
 Route::post('example/movies/{id}', [ExampleMovieController::class, 'update']);
 
+// ---- Queries -----
+Route::get('example/queries/where-complejo', [QueryController::class, 'whereComplejo']);
+Route::get('example/queries/where-simple', [QueryController::class, 'whereSimple']);
+Route::get('example/queries/where-and', [QueryController::class, 'whereAnd']);
+Route::get('example/queries/where-or', [QueryController::class, 'whereOr']);
+Route::get('example/queries/where-in', [QueryController::class, 'whereIn']);
+Route::get('example/queries/where-like', [QueryController::class, 'whereLike']);
+Route::get('example/queries/order-by', [QueryController::class, 'orderBy']);
+Route::get('example/queries/filter', [QueryController::class, 'filter']);
+Route::get('example/queries/filter-2', [QueryController::class, 'filter2']);
+
 
 // ---------------
 // ----- RAM -----
 // ---------------
-
 Route::get('backoffice/movies', [MovieController::class, 'index']);
 Route::get('backoffice/movies/create', [MovieController::class, 'create']);
 

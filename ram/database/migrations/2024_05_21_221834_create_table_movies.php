@@ -20,6 +20,13 @@ return new class extends Migration
             $table->string('image', 255)->nullable();
             $table->boolean('is_visible')->default(true);
             $table->timestamps();
+
+            // $table->foreign('genre_id')
+            //     ->references('id')
+            //     ->on('genres')
+            //     ->onUpdate('cascade')
+            //     ->onDelete('cascade')
+            // ;
         });
     }
 

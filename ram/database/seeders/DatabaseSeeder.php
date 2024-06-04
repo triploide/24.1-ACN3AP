@@ -12,7 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Movie::factory(10)->create();
+        // $this->call(MovieSeeder::class);
+
+        \App\Models\Movie::factory(100)->create();
+        \App\Models\Genre::factory(10)->create();
+        // php artisan migrate
+        // php artisan db:seed class=MovieSeeder
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

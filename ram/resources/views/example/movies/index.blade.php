@@ -16,6 +16,9 @@
                         <tr>
                             <th>Imagen</th>
                             <th>Título</th>
+                            <th>Género</th>
+                            <th>Visible</th>
+                            <th>Fecha de estreno</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -26,6 +29,9 @@
                                     <img style="width: 50px" src="{{ $movie->image }}" alt="{{ $movie->title }}">
                                 </td>
                                 <td>{{ $movie->title }}</td>
+                                <td>{{ $movie->genre_id }}</td>
+                                <td>{{ $movie->is_visible }}</td>
+                                <td>{{ $movie->released_date }}</td>
                                 <td>
                                     <a href="/example/movies/{{ $movie->id }}/edit">Editar</a>
                                 </td>
