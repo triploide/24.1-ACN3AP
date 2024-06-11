@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(MovieSeeder::class);
 
-        \App\Models\Movie::factory(100)->create();
-        \App\Models\Genre::factory(10)->create();
+        \App\Models\Movie::factory(20)->create();
+        \App\Models\Genre::factory(5)->create();
         // php artisan migrate
         // php artisan db:seed class=MovieSeeder
 

@@ -71,6 +71,8 @@ Route::get('example/queries/filter-2', [QueryController::class, 'filter2']);
 // ---------------
 Route::get('backoffice/movies', [MovieController::class, 'index']);
 Route::get('backoffice/movies/create', [MovieController::class, 'create']);
+Route::get('backoffice/movies/{id}', [MovieController::class, 'show']);
+Route::post('backoffice/movies', [MovieController::class, 'store']);
 
 
 

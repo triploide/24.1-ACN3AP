@@ -3,10 +3,31 @@
 @section('title', 'Crear Película')
 
 @section('content')
-    <form action="">
+    <form action="/backoffice/movies" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="form-group">
             <label for="title">Título</label>
             <input id="title" name="title" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="released_date">Fecha de estreno</label>
+            <input id="released_date" name="released_date" type="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="genre_id">Género</label>
+            <select name="genre_id" id="genre_id">
+                <option value="1">Acción</option>
+                <option value="2">Ciencia Ficción</option>
+                <option value="3">Drama</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="image">Imagen</label>
+            <input id="image" name="image" type="file" class="form-control">
         </div>
     </form>
 @endsection

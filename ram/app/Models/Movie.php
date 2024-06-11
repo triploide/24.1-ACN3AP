@@ -17,4 +17,11 @@ class Movie extends Model
 
         return $carbon->since();
     }
+
+    // Nombre de la relación
+    public function image()
+    {
+        // return $this->hasOne(Image::class);
+        return $this->belongsTo(Image::class); // FQN del modelo con el que me relaciono
+    }
 }

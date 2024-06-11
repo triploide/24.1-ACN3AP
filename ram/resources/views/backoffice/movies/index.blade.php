@@ -19,9 +19,11 @@
         @foreach ($movies as $movie)
             <tr>
                 <td>
-                    <img src="{{ $movie->image }}" alt="{{ $movie->title }}">
+                    <img style="width: 80px" src="/storage/{{ $movie?->image?->src }}" alt="{{ $movie->title }}">
                 </td>
-                <td>{{ $movie->title }}</td>
+                <td>
+                    <a href="/backoffice/movies/{{ $movie->id }}">{{ $movie->title }}</a>
+                </td>
                 <td>---</td>
             </tr>
         @endforeach

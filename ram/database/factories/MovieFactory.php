@@ -20,8 +20,7 @@ class MovieFactory extends Factory
             'title' => fake()->sentence,
             'description' => fake()->paragraph,
             'released_date' => fake()->dateTimeBetween(),
-            'image' => 'https://loremflickr.com/320/240?random=' . rand(1,50),
-            'genre_id' => rand(1, 10),
+            'genre_id' => rand(1, 5),
         ];
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('released_date')->nullable();
             $table->tinyInteger('genre_id')->unsigned()->index();
-            $table->string('image', 255)->nullable();
+            $table->integer('image_id')->nullable()->unsigned()->nullable()->index();
             $table->boolean('is_visible')->default(true);
             $table->timestamps();
 
