@@ -7,6 +7,12 @@
 @endsection
 
 @section('content')
+<form action="/backoffice/movies">
+    <div class="form-group">
+        <label for="search">Buscar</label>
+        <input id="search" name="search" type="search">
+    </div>
+</form>
 <table class="table table-striped table-borderd">
     <thead>
         <tr>
@@ -24,7 +30,18 @@
                 <td>
                     <a href="/backoffice/movies/{{ $movie->id }}">{{ $movie->title }}</a>
                 </td>
-                <td>---</td>
+                <td>
+                    @if (session()->has('cart') && in_array($movie->id, session('cart')))
+                        <a class="btn btn-danger" href="/backoffice/movies/remove/{{ $movie->id }}">
+                            Quitar
+                        </a>
+                    @else
+                        
+                        <a class="btn btn-primary" href="/backoffice/movies/add/{{ $movie->id }}">
+                            Agregar
+                        </a>
+                    @endif
+                </td>
             </tr>
         @endforeach
     </tbody>

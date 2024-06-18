@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +20,12 @@ class DatabaseSeeder extends Seeder
         \App\Models\Genre::factory(5)->create();
         // php artisan migrate
         // php artisan db:seed class=MovieSeeder
+
+        Tag::create(['value' => 'hollywood']);
+        Tag::create(['value' => 'love']);
+        Tag::create(['value' => 'photography']);
+        Tag::create(['value' => 'fashion']);
+        Tag::create(['value' => 'music']);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
