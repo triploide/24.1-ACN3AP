@@ -7,6 +7,8 @@ use App\Http\Controllers\BladeController;
 use App\Http\Controllers\Example\RequestController;
 use App\Http\Controllers\Example\QueryController;
 use App\Http\Controllers\Example\MovieController as ExampleMovieController;
+use App\Http\Controllers\Example\RelationshipController;
+use App\Http\Controllers\Example\StorageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +56,10 @@ Route::get('example/movies/{id}/edit', [ExampleMovieController::class, 'edit']);
 // método que edita
 Route::post('example/movies/{id}', [ExampleMovieController::class, 'update']);
 
-// ---- Queries -----
-Route::get('example/queries/where-complejo', [QueryController::class, 'whereComplejo']);
-Route::get('example/queries/where-simple', [QueryController::class, 'whereSimple']);
+// ----- Queries -----
+Route::get('example/queries', [QueryController::class, 'index']);
+Route::get('example/queries/where-eq', [QueryController::class, 'whereEq']);
+Route::get('example/queries/where-gt', [QueryController::class, 'whereGt']);
 Route::get('example/queries/where-and', [QueryController::class, 'whereAnd']);
 Route::get('example/queries/where-or', [QueryController::class, 'whereOr']);
 Route::get('example/queries/where-in', [QueryController::class, 'whereIn']);
@@ -64,6 +67,18 @@ Route::get('example/queries/where-like', [QueryController::class, 'whereLike']);
 Route::get('example/queries/order-by', [QueryController::class, 'orderBy']);
 Route::get('example/queries/filter', [QueryController::class, 'filter']);
 Route::get('example/queries/filter-2', [QueryController::class, 'filter2']);
+
+// ----- File Storage -----
+Route::get('example/storage/form/{id}', [StorageController::class, 'form']);
+Route::post('example/storage/upload/{id}', [StorageController::class, 'upload']);
+Route::get('example/storage/show/{id}', [StorageController::class, 'show']);
+
+// ----- Relaciones -----
+Route::get('example/relationships', [RelationshipController::class, 'index']);
+Route::get('example/relationships/belongs-to', [RelationshipController::class, 'belongsTo']);
+Route::get('example/relationships/has-one', [RelationshipController::class, 'hasOne']);
+Route::get('example/relationships/has-many', [RelationshipController::class, 'hasMany']);
+Route::get('example/relationships/belongs-to-many', [RelationshipController::class, 'belongsToMany']);
 
 
 // ---------------

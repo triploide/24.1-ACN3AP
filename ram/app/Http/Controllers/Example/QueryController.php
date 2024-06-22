@@ -8,99 +8,63 @@ use App\Models\Movie;
 
 class QueryController extends Controller
 {
-    public function whereComplejo()
+    public function index()
     {
-        // // Preparar
-        // $query = Movie::where('genre_id', '=', 7); // columna, operador, valor
-
-        // // Ejecutar
-        // // get, first
-        // $query->get();
-
-        $movies = Movie::where('released_date', '>=', '2010-01-01')->get();
-
-        // foreach ($movies as $movie) {
-        //     echo 'Genre Id: ' . $movie->genre_id . '<br>';
-        // }
-
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.index');
     }
 
-    public function whereSimple()
+    public function whereEq()
     {
-        $movies = Movie::where('genre_id', 7)->get();
+        $movies = Movie::where('genre_id', 3)->get();
 
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.results', compact('movies'));
+    }
+
+    public function whereGt()
+    {
+        $movies = Movie::where('released_date', '>=', '2015-01-01')->get();
+
+        return view('example.queries.results', compact('movies'));
     }
 
     public function whereAnd()
     {
-        $movies = Movie::where('genre_id', 7)->where('is_visible', 1)->get();
+        $movies = Movie::where('released_date', '>=', '2015-01-01')->where('genre_id', 2)->get();
 
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.results', compact('movies'));
     }
 
     public function whereOr()
     {
-        $movies = Movie::where('genre_id', 7)
-            ->orWhere('genre_id', 3)
-            ->get()
-        ;
+        $movies = Movie::where('released_date', '>=', '2015-01-01')->orWhere('genre_id', 2)->get();
 
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.results', compact('movies'));
     }
 
     public function whereIn()
     {
-        $movies = Movie::whereIn('genre_id', [1,3,7,10])->get();
+        $movies = Movie::whereIn('genre_id', [1, 2, 5])->get();
 
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.results', compact('movies'));
     }
 
     public function whereLike()
     {
-        $movies = Movie::where('title', 'like', 'ipsum%')->get();
+        $movies = Movie::where('title', 'like', '%ut%')->get();
 
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.results', compact('movies'));
     }
 
     public function orderBy()
     {
-        $movie = Movie::orderBy('released_date', 'desc')->first();
+        $movies = Movie::orderBy('released_date', 'desc')->get();
 
-        dd($movie->toArray());
+        return view('example.queries.results', compact('movies'));
     }
 
     public function filter()
     {
-        if (request()->has('title') && request()->has('genre_id')) {
-            $title = request()->input('title');
-            $genre_id = request()->input('genre_id');
-            $movies = Movie::where('title', 'like', "%$title%")
-                ->where('genre_id', $genre_id)
-                ->get()
-            ;
-        } else {
-            $movies = Movie::all();
-        }
-
-        return view('example.movies.index', compact('movies'));
-    }
-
-    public function filter2()
-    {
-        // $movie = Movie::find(1);
-        // $movie->delete();
-
         $query = Movie::query();
-
-        if (request()->has('title')) {
-            $query->where('title', 'like', '%'.request()->input('title').'%');
-        }
-
-        if (request()->has('released_date')) {
-            $query->where('released_date', '>', request()->input('released_date'));
-        }
 
         if (request()->has('genre_id')) {
             $query->where('genre_id', request()->input('genre_id'));
@@ -108,6 +72,27 @@ class QueryController extends Controller
 
         $movies = $query->get();
 
-        return view('example.movies.index', compact('movies'));
+        return view('example.queries.results', compact('movies'));
+    }
+
+    public function filter2()
+    {
+        $query = Movie::query();
+
+        if (request()->has('genre_id')) {
+            $query->where('genre_id', request()->input('genre_id'));
+        }
+
+        if (request()->has('released_date')) {
+            $query->where('released_date', '>=', request()->input('released_date'));
+        }
+
+        if (request()->has('search')) {
+            $query->where('title', 'like', '%' . request()->input('search') . '%');
+        }
+
+        $movies = $query->get();
+
+        return view('example.queries.results', compact('movies'));
     }
 }
