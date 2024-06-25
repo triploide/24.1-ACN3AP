@@ -31,16 +31,17 @@
                     <a href="/backoffice/movies/{{ $movie->id }}">{{ $movie->title }}</a>
                 </td>
                 <td>
-                    @if (session()->has('cart') && in_array($movie->id, session('cart')))
-                        <a class="btn btn-danger" href="/backoffice/movies/remove/{{ $movie->id }}">
-                            Quitar
-                        </a>
-                    @else
-                        
-                        <a class="btn btn-primary" href="/backoffice/movies/add/{{ $movie->id }}">
-                            Agregar
-                        </a>
-                    @endif
+                    @auth
+                        @if (session()->has('cart') && in_array($movie->id, session('cart')))
+                            <a class="btn btn-danger" href="/backoffice/movies/remove/{{ $movie->id }}">
+                                Quitar
+                            </a>
+                        @else
+                            <a class="btn btn-primary" href="/backoffice/movies/add/{{ $movie->id }}">
+                                Agregar
+                            </a>
+                        @endif
+                    @endauth
                 </td>
             </tr>
         @endforeach

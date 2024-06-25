@@ -11,7 +11,7 @@
     @stack('styles')
 </head>
 
-<body>
+<body class="d-flex min-vh-100 flex-column">
 
     @include('backoffice.partials.nav')
 
@@ -23,7 +23,7 @@
         </ol>
     </nav>
 
-    <main class="container" style="padding-bottom: 150px">
+    <main class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1>@yield('title')</h1>

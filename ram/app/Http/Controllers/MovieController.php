@@ -11,6 +11,14 @@ use App\Models\Tag;
 
 class MovieController extends Controller
 {
+    // public function __construct()
+    // {
+    //     dd(\Auth::user());
+    //     // if (!\Auth::user()->is_admin) {
+    //     //     return redirect('/');
+    //     // }
+    // }
+
     public function index()
     {
         $query = Movie::query();

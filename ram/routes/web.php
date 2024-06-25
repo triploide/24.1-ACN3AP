@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ModelController;
 use App\Http\Controllers\BladeController;
+use App\Http\Controllers\Example\AuthController;
 use App\Http\Controllers\Example\RequestController;
 use App\Http\Controllers\Example\QueryController;
 use App\Http\Controllers\Example\MovieController as ExampleMovieController;
 use App\Http\Controllers\Example\RelationshipController;
 use App\Http\Controllers\Example\StorageController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,31 +82,23 @@ Route::get('example/relationships/has-one', [RelationshipController::class, 'has
 Route::get('example/relationships/has-many', [RelationshipController::class, 'hasMany']);
 Route::get('example/relationships/belongs-to-many', [RelationshipController::class, 'belongsToMany']);
 
+// ----- Auth -----
+Route::get('example/auth/check', [AuthController::class, 'check']);
+Route::get('example/auth/user', [AuthController::class, 'user']);
+Route::get('example/auth/id', [AuthController::class, 'id']);
+Route::get('example/auth/logout', [AuthController::class, 'logout']);
+Route::get('example/auth/login', [AuthController::class, 'login']);
 
 // ---------------
 // ----- RAM -----
 // ---------------
-Route::get('backoffice/movies', [MovieController::class, 'index']);
-Route::get('backoffice/movies/create', [MovieController::class, 'create']);
-Route::get('backoffice/movies/add/{id}', [MovieController::class, 'add']);
-Route::get('backoffice/movies/remove/{id}', [MovieController::class, 'remove']);
-Route::get('backoffice/checkout', [MovieController::class, 'checkout']);
-Route::get('backoffice/movies/{id}', [MovieController::class, 'show']);
-Route::post('backoffice/movies', [MovieController::class, 'store']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('backoffice/movies', [MovieController::class, 'index'])->middleware('auth');
+Route::get('backoffice/movies/create', [MovieController::class, 'create'])->middleware('auth');
+Route::get('backoffice/movies/add/{id}', [MovieController::class, 'add'])->middleware('auth');
+Route::get('backoffice/movies/remove/{id}', [MovieController::class, 'remove'])->middleware('auth');
+Route::get('backoffice/checkout', [MovieController::class, 'checkout'])->middleware('auth');
+Route::get('backoffice/movies/{id}', [MovieController::class, 'show'])->middleware('auth');
+Route::post('backoffice/movies', [MovieController::class, 'store'])->middleware('auth');
 
 Auth::routes();
 
